@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "Y:/TEOCOA/EXP2/TEST_MAIN_isim_beh.exe" -prj "Y:/TEOCOA/EXP2/TEST_MAIN_beh.prj" "work.TEST_MAIN" "work.glbl" 

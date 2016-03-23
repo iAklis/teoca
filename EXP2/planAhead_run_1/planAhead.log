@@ -1,0 +1,115 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7
+# Build 321239 by xbuild on Fri Sep 27 19:31:35 MDT 2013
+# Start of session at: Wed Mar 23 11:15:37 2016
+# Process ID: 532
+# Log file: Y:/TEOCOA/EXP2/planAhead_run_1/planAhead.log
+# Journal file: Y:/TEOCOA/EXP2/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Device 21-36] Loading parts and site information from C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+source Y:/TEOCOA/EXP2/pa.fromHdl.tcl
+# create_project -name EXP2 -dir "Y:/TEOCOA/EXP2/planAhead_run_1" -part xc6slx16csg324-3
+# set_param project.pinAheadLayout yes
+# set srcset [get_property srcset [current_run -impl]]
+# set_property target_constrs_file "MAIN.ucf" [current_fileset -constrset]
+Adding file 'Y:/TEOCOA/EXP2/MAIN.ucf' to fileset 'constrs_1'
+# set hdlfile [add_files [list {MAIN.v}]]
+# set_property file_type Verilog $hdlfile
+# set_property library work $hdlfile
+# set_property top MAIN $srcset
+# add_files [list {MAIN.ucf}] -fileset [get_property constrset [current_run]]
+# open_rtl_design -part xc6slx16csg324-3
+Using Verific elaboration
+Parsing VHDL file "C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/lib/synplify/synattr.vhd" into library synplify
+Analyzing Verilog file "Y:/TEOCOA/EXP2/MAIN.v" into library work
+Loading clock regions from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan6/spartan6lx/xc6slx16/ClockRegion.xml
+Loading clock buffers from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan6/spartan6lx/xc6slx16/ClockBuffers.xml
+Loading package pin functions from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan6/PinFunctions.xml...
+Loading package from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan6/spartan6lx/xc6slx16/csg324/Package.xml
+Loading io standards from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan6/IOStandards.xml
+Loading device configuration modes from C:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/spartan6/ConfigModes.xml
+Loading list of drcs for the architecture : C:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/spartan6/drc.xml
+Parsing UCF File [Y:/TEOCOA/EXP2/MAIN.ucf]
+Finished Parsing UCF File [Y:/TEOCOA/EXP2/MAIN.ucf]
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Phase 0 | Netlist Checksum: 35a38d69
+open_rtl_design: Time (s): elapsed = 00:00:09 . Memory (MB): peak = 536.590 ; gain = 120.852
+update_compile_order -fileset sim_1
+startgroup
+set_property package_pin T11 [get_ports {A[3]}]
+endgroup
+startgroup
+set_property package_pin R11 [get_ports {A[2]}]
+endgroup
+startgroup
+set_property package_pin N11 [get_ports {A[1]}]
+endgroup
+startgroup
+set_property package_pin M11 [get_ports {A[0]}]
+endgroup
+set_property package_pin "" [get_ports [list  {B[3]}]]
+startgroup
+set_property package_pin T5 [get_ports {A[3]}]
+endgroup
+startgroup
+set_property package_pin V8 [get_ports {A[2]}]
+endgroup
+startgroup
+set_property package_pin U8 [get_ports {A[1]}]
+endgroup
+startgroup
+set_property package_pin N8 [get_ports {A[0]}]
+endgroup
+startgroup
+set_property package_pin M8 [get_ports {B[3]}]
+endgroup
+startgroup
+set_property package_pin V9 [get_ports {B[2]}]
+endgroup
+startgroup
+set_property package_pin V9 [get_ports {B[2]}]
+endgroup
+startgroup
+set_property package_pin T9 [get_ports {B[1]}]
+endgroup
+startgroup
+set_property package_pin T10 [get_ports {B[0]}]
+endgroup
+save_constraints
+startgroup
+set_property package_pin T11 [get_ports {F[3]}]
+endgroup
+startgroup
+set_property package_pin R11 [get_ports {F[2]}]
+endgroup
+startgroup
+set_property package_pin N11 [get_ports {F[1]}]
+endgroup
+startgroup
+set_property package_pin M11 [get_ports {F[0]}]
+endgroup
+save_constraints
+startgroup
+set_property package_pin C9 [get_ports C0]
+endgroup
+startgroup
+set_property package_pin U16 [get_ports C4]
+endgroup
+save_constraints
+exit
+ERROR: [PlanAhead 12-106] *** Exception: ui.h.b: Found deleted key in HTclEventBroker. Verify if the classes listed here call cleanup()
+HTclEvent: DEBUG_PORT_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: SIGNAL_MODIFY   Classes: ui.views.aR 
+HTclEvent: DEBUG_CORE_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: SIGNAL_BUS_MODIFY   Classes: ui.views.aR 
+ (See Y:/TEOCOA/EXP2\planAhead_pid532.debug)
+ERROR: [Common 17-39] 'stop_gui' failed due to earlier errors.
+INFO: [Common 17-206] Exiting PlanAhead at Wed Mar 23 11:18:48 2016...
+INFO: [Common 17-83] Releasing license: PlanAhead
