@@ -1,0 +1,83 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7
+# Build 321239 by xbuild on Fri Sep 27 19:31:35 MDT 2013
+# Start of session at: Wed Mar 30 16:29:50 2016
+# Process ID: 3092
+# Log file: Y:/TEOCOA/EXPR3_DIGITAL/planAhead_run_2/planAhead.log
+# Journal file: Y:/TEOCOA/EXPR3_DIGITAL/planAhead_run_2/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source Y:/TEOCOA/EXPR3_DIGITAL/pa.fromHdl.tcl
+update_compile_order -fileset sim_1
+startgroup
+set_property package_pin P17 [get_ports {AN[3]}]
+endgroup
+startgroup
+set_property package_pin P18 [get_ports {AN[2]}]
+endgroup
+startgroup
+set_property package_pin N15 [get_ports {AN[1]}]
+endgroup
+startgroup
+set_property package_pin N16 [get_ports {AN[0]}]
+endgroup
+startgroup
+set_property package_pin T17 [get_ports {dig[7]}]
+endgroup
+startgroup
+set_property package_pin T18 [get_ports {dig[6]}]
+endgroup
+startgroup
+set_property package_pin U17 [get_ports {dig[5]}]
+endgroup
+startgroup
+set_property package_pin U18 [get_ports {dig[4]}]
+endgroup
+startgroup
+set_property package_pin M14 [get_ports {dig[3]}]
+endgroup
+startgroup
+set_property package_pin N14 [get_ports {dig[2]}]
+endgroup
+startgroup
+set_property package_pin L14 [get_ports {dig[1]}]
+endgroup
+startgroup
+set_property package_pin M13 [get_ports {dig[0]}]
+endgroup
+save_constraints
+startgroup
+set_property package_pin T5 [get_ports {AB_SW[2]}]
+endgroup
+startgroup
+set_property package_pin V8 [get_ports {AB_SW[1]}]
+endgroup
+startgroup
+set_property package_pin U8 [get_ports {AB_SW[0]}]
+endgroup
+save_constraints
+set_property package_pin "" [get_ports [list  {ALU_OP[2]}]]
+startgroup
+set_property package_pin T11 [get_ports {LED[1]}]
+endgroup
+startgroup
+set_property package_pin R11 [get_ports {LED[0]}]
+endgroup
+save_constraints
+startgroup
+set_property package_pin N8 [get_ports {ALU_OP[2]}]
+endgroup
+startgroup
+set_property package_pin M8 [get_ports {ALU_OP[1]}]
+endgroup
+startgroup
+set_property package_pin V9 [get_ports {ALU_OP[0]}]
+endgroup
+save_constraints
+startgroup
+set_property package_pin V10 [get_ports clock]
+endgroup
+startgroup
+set_property package_pin T10 [get_ports F_LED_SW]
+endgroup
+save_constraints

@@ -1,0 +1,25 @@
+
+# PlanAhead Generated physical constraints 
+
+NET "AN[3]" LOC = P17;
+NET "AN[2]" LOC = P18;
+NET "AN[1]" LOC = N15;
+NET "AN[0]" LOC = N16;
+NET "dig[7]" LOC = T17;
+NET "dig[6]" LOC = T18;
+NET "dig[5]" LOC = U17;
+NET "dig[4]" LOC = U18;
+NET "dig[3]" LOC = M14;
+NET "dig[2]" LOC = N14;
+NET "dig[1]" LOC = L14;
+NET "dig[0]" LOC = M13;
+NET "AB_SW[2]" LOC = T5;
+NET "AB_SW[1]" LOC = V8;
+NET "AB_SW[0]" LOC = U8;
+NET "LED[1]" LOC = T11;
+NET "LED[0]" LOC = R11;
+NET "ALU_OP[2]" LOC = N8;
+NET "ALU_OP[1]" LOC = M8;
+NET "ALU_OP[0]" LOC = V9;
+NET "clock" LOC = V10;
+NET "F_LED_SW" LOC = T10;

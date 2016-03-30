@@ -108,16 +108,16 @@ module MAIN(ALU_OP, AB_SW, F_LED_SW, LED, clock, dig, AN
 	 begin
 		case(F_LED_SW)
 			1'b0: 
-			begin 
-				case(AN)
-					4'b0111:dig[7:0] <= Seg[7:0];
-					4'b1011:dig[7:0] <= Seg[15:8];
-					4'b1101:dig[7:0] <= Seg[23:16];
-					4'b1110:dig[7:0] <= Seg[31:24];
-					default: dig[7:0] <= Seg[7:0];
-				endcase
-				LED[0] = ZF; LED[1] = OF;
-			end
+				begin 
+					case(AN)
+						4'b0111:dig[7:0] <= Seg[7:0];
+						4'b1011:dig[7:0] <= Seg[15:8];
+						4'b1101:dig[7:0] <= Seg[23:16];
+						4'b1110:dig[7:0] <= Seg[31:24];
+						default: dig[7:0] <= Seg[7:0];
+					endcase
+					LED[0] = ZF; LED[1] = OF;
+				end
 			1'b1: 
 				begin 
 					case(AN)
