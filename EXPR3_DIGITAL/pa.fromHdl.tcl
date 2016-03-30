@@ -1,7 +1,7 @@
 
 # PlanAhead Launch Script for Pre-Synthesis Floorplanning, created by Project Navigator
 
-create_project -name EXPR3_DIGITAL -dir "Y:/TEOCOA/EXPR3_DIGITAL/planAhead_run_2" -part xc6slx16csg324-3
+create_project -name EXPR3_DIGITAL -dir "Y:/TEOCOA/EXPR3_DIGITAL/planAhead_run_3" -part xc6slx16csg324-3
 set_param project.pinAheadLayout yes
 set srcset [get_property srcset [current_run -impl]]
 set_property target_constrs_file "MAIN.ucf" [current_fileset -constrset]

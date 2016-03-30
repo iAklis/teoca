@@ -18,7 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module MAIN(ALU_OP, AB_SW, F_LED_SW, LED, clock, dig, AN
+module MAIN(ALU_OP, AB_SW, F_LED_SW, LED, clock, dig, AN, RST
     );
 	// TOP MODULE FOR TEST
 	input clock;
@@ -29,6 +29,7 @@ module MAIN(ALU_OP, AB_SW, F_LED_SW, LED, clock, dig, AN
 	output wire [3:0] AN;
 	output reg [1:0] LED;
 	
+	input wire RST;
 	wire [31:0] F;
 	wire ZF, OF;
 	wire [63:0] Seg;
@@ -101,7 +102,8 @@ module MAIN(ALU_OP, AB_SW, F_LED_SW, LED, clock, dig, AN
 	 
 	 clock CL (
     .clock(clock), 
-    .AN(AN)
+    .AN(AN),
+	 .rst(RST)
     );
 	 
 	 always@(*)
@@ -138,21 +140,34 @@ module MAIN(ALU_OP, AB_SW, F_LED_SW, LED, clock, dig, AN
 	 
 endmodule
 
-module clock(clock, AN);
+module clock(clock, AN, rst);
 	input clock;
+	input rst;
 	output reg [3:0] AN; 
 	
 	reg [1:0] Bit_Sel;
 	reg [17:0] count;
-	
-	always@(posedge clock)
+	always@(posedge clock or negedge rst)
 	begin
-		count <= count + 1'b1;
-		if (count == 18'd260000)
-		begin
-			Bit_Sel <= Bit_Sel + 1'b1;
-			count <=18'b0;
-		end
+		if(!rst)
+			begin
+				AN <= 4'd1111;
+				Bit_Sel <= 2'b00;
+				count <= 18'd0;
+			end
+		else
+			begin
+				if (count == 18'd260000)
+					begin
+						Bit_Sel <= Bit_Sel + 1;
+						count <=18'd0;
+					end
+				else
+					begin
+						count <= count + 1'b1;
+						
+					end
+			end
 	end
 	
 	always @(*)
@@ -162,9 +177,10 @@ module clock(clock, AN);
 			2'b01: AN <= 4'b1011;
 			2'b10: AN <= 4'b1101;
 			2'b11: AN <= 4'b1110;
-			default: AN <= 4'b1111;
+			default: AN <= 4'b0000;
 		endcase
 	end
+
 endmodule
 
 
