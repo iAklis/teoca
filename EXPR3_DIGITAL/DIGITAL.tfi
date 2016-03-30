@@ -1,0 +1,10 @@
+
+
+
+// Instantiate the module
+DIGITAL instance_name (
+    .Data(Data), 
+    .Seg(Seg)
+    );
+
+

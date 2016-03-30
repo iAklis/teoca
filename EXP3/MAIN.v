@@ -21,16 +21,15 @@
 module MAIN(ALU_OP, AB_SW, F_LED_SW, LED
     );
 	// TOP MODULE FOR TEST
-	input [2:0] ALU_OP;
-	input [2:0] AB_SW;
+	input wire [2:0] ALU_OP;
+	input wire [2:0] AB_SW;
 	input [2:0] F_LED_SW;
-	output [7:0] LED;
+	output reg [7:0] LED;
 	
 	wire [31:0] F;
 	wire ZF, OF;
 	
 	reg[31:0] A,B;
-	reg[2:0] AB_SW;
 	always@(*)
 	begin
 		case(AB_SW)
@@ -42,7 +41,8 @@ module MAIN(ALU_OP, AB_SW, F_LED_SW, LED
 			3'b101:begin A=32'h8000_0000; B=32'hFFFF_FFFF; end
 			3'b110:begin A=32'hFFFF_FFFF; B=32'h8000_0000; end
 			3'b111:begin A=32'h1234_5678; B=32'h3333_2222; end
-			default: begin A = 32'h9ABC_DEF0; B = 32'h1111_2222; end
+			default: 
+				begin A = 32'h9ABC_DEF0; B = 32'h1111_2222; end
 		endcase
 	end
 	
@@ -72,8 +72,8 @@ endmodule
 module ALU(A, B, ZF, OF, F, ALU_OP);
 	input [2:0] ALU_OP;
 	input [31:0] A, B;
-	output [31:0] F;
-	output ZF, OF;
+	output reg [31:0] F;
+	output reg ZF, OF;
 	reg C32;
 	always @(*)
 	begin
@@ -114,11 +114,13 @@ module ALU(A, B, ZF, OF, F, ALU_OP);
 				OF = 0;
 			end
 			3'd7:begin //sll
-				
+			  F=B<<A;
+			  OF=0;
 			end
-			//default:begin
-			//	
-			//end;
+			default:begin
+			  F=A;
+			  OF = 0;
+			end
 			
 		endcase
 		if (F == 32'd0)
@@ -132,6 +134,3 @@ module ALU(A, B, ZF, OF, F, ALU_OP);
 	end
 	
 endmodule
-
-
-

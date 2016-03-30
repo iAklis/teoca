@@ -1,0 +1,11 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7
+# Build 321239 by xbuild on Fri Sep 27 19:31:35 MDT 2013
+# Start of session at: Wed Mar 30 12:09:07 2016
+# Process ID: 2788
+# Log file: Y:/TEOCOA/EXPR3_DIGITAL/planAhead_run_1/planAhead.log
+# Journal file: Y:/TEOCOA/EXPR3_DIGITAL/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source Y:/TEOCOA/EXPR3_DIGITAL/pa.fromHdl.tcl
+update_compile_order -fileset sim_1

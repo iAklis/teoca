@@ -1,0 +1,13 @@
+
+
+
+// Instantiate the module
+MAIN instance_name (
+    .ALU_OP(ALU_OP), 
+    .AB_SW(AB_SW), 
+    .F_LED_SW(F_LED_SW), 
+	 .AB_SW(AB_SW), 
+    .LED(LED)
+    );
+
+
