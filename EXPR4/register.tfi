@@ -1,0 +1,18 @@
+
+
+
+// Instantiate the module
+register instance_name (
+    .clk(clk), 
+    .Reset(Reset), 
+    .R_Addr_A(R_Addr_A), 
+    .R_Addr_B(R_Addr_B), 
+    .W_Addr(W_Addr), 
+    .W_Data(W_Data), 
+    .R_Data_A(R_Data_A), 
+    .Write_Reg(Write_Reg), 
+    .R_Data_A(R_Data_A), 
+    .R_Data_B(R_Data_B)
+    );
+
+
