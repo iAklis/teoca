@@ -18,8 +18,20 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module MAIN(
+module MAIN(Address, RW, CS, Clk, Reset, AB, LED
     );
+	parameter SIZE = 5;
+	parameter LEDSIZE = 8;
+	input Clk, Reset;
+	input [SIZE-1:0] Address;
+	input RW, AB;
+	input [1:0] CS;
+	
+	output reg [LEDSIZE-1:0] LED;
+	
+	
 
+endmodule
 
+module register();
 endmodule
