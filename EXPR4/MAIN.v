@@ -33,7 +33,7 @@ module MAIN(Address, RW, CS, Clk, Reset, AB, LED
 
 endmodule
 
-module register(clk, Reset, R_Addr_A, R_Addr_B, W_Addr, W_Data, R_data_A, Write_Reg, R_Data_A, R_Data_B
+module register(clk, Reset, R_Addr_A, R_Addr_B, W_Addr, W_Data, R_Data_A, Write_Reg, R_Data_A, R_Data_B
 	 );
 	 input clk;
 	 input Reset;
@@ -44,10 +44,11 @@ module register(clk, Reset, R_Addr_A, R_Addr_B, W_Addr, W_Data, R_data_A, Write_
 	 output [31:0] R_Data_A;
 	 output [31:0] R_Data_B;
 	 
-	 reg [31:0] REGISTERS[31:0];
+	 reg [31:0] REGISTERS[0:31];
+	 
 	 integer i;
 	 assign R_Data_A = REGISTERS[R_Addr_A];
-	 assign R_data_B = REGISTERS[R_Addr_B];
+	 assign R_Data_B = REGISTERS[R_Addr_B];
 	 always @(posedge clk or posedge Reset)
 	 begin
 		if(Reset)
