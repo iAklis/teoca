@@ -1,0 +1,26 @@
+
+# PlanAhead Generated physical constraints 
+
+NET "Address[4]" LOC = T5;
+NET "Address[3]" LOC = V8;
+NET "Address[2]" LOC = U8;
+NET "Address[1]" LOC = N8;
+NET "Address[0]" LOC = M8;
+NET "AN[3]" LOC = P17;
+NET "AN[2]" LOC = P18;
+NET "AN[1]" LOC = N15;
+NET "AN[0]" LOC = N16;
+NET "CS[1]" LOC = T9;
+NET "CS[0]" LOC = T10;
+NET "dig[7]" LOC = T17;
+NET "dig[2]" LOC = N14;
+NET "dig[6]" LOC = T18;
+NET "dig[5]" LOC = U17;
+NET "dig[4]" LOC = U18;
+NET "dig[3]" LOC = M14;
+NET "dig[1]" LOC = L14;
+NET "dig[0]" LOC = M13;
+NET "AB" LOC = A8;
+NET "clk" LOC = C9;
+NET "Reset" LOC = D9;
+NET "RW" LOC = V9;
