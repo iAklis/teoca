@@ -112,10 +112,10 @@ module MAIN(ALU_OP, AB_SW, F_LED_SW, LED, clock, dig, AN, RST
 			1'b0: 
 				begin 
 					case(AN)
-						4'b0111:dig[7:0] <= Seg[7:0];
-						4'b1011:dig[7:0] <= Seg[15:8];
-						4'b1101:dig[7:0] <= Seg[23:16];
-						4'b1110:dig[7:0] <= Seg[31:24];
+						4'b1110:dig[7:0] <= Seg[7:0];
+						4'b1101:dig[7:0] <= Seg[15:8];
+						4'b1011:dig[7:0] <= Seg[23:16];
+						4'b0111:dig[7:0] <= Seg[31:24];
 						default: dig[7:0] <= Seg[7:0];
 					endcase
 					LED[0] = ZF; LED[1] = OF;
@@ -123,10 +123,10 @@ module MAIN(ALU_OP, AB_SW, F_LED_SW, LED, clock, dig, AN, RST
 			1'b1: 
 				begin 
 					case(AN)
-						4'b0111:dig[7:0] <= Seg[39:32];
-						4'b1011:dig[7:0] <= Seg[47:40];
-						4'b1101:dig[7:0] <= Seg[55:48];
-						4'b1110:dig[7:0] <= Seg[63:56];
+						4'b1110:dig[7:0] <= Seg[39:32];
+						4'b1101:dig[7:0] <= Seg[47:40];
+						4'b1011:dig[7:0] <= Seg[55:48];
+						4'b0111:dig[7:0] <= Seg[63:56];
 						default: dig[7:0] <= Seg[7:0];
 					endcase
 					LED[0] = ZF; LED[1] = OF;
@@ -151,7 +151,6 @@ module clock(clock, AN, rst);
 	begin
 		if(!rst)
 			begin
-				AN <= 4'd1111;
 				Bit_Sel <= 2'b00;
 				count <= 18'd0;
 			end
@@ -159,7 +158,7 @@ module clock(clock, AN, rst);
 			begin
 				if (count == 18'd260000)
 					begin
-						Bit_Sel <= Bit_Sel + 1;
+						Bit_Sel <= Bit_Sel + 2'b01;
 						count <=18'd0;
 					end
 				else

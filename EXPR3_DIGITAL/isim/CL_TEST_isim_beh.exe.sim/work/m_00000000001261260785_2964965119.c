@@ -24,7 +24,7 @@
 static const char *ng0 = "//Mac/Github/TEOCOA/EXPR3_DIGITAL/MAIN.v";
 static unsigned int ng1[] = {7U, 0U};
 static unsigned int ng2[] = {0U, 0U};
-static unsigned int ng3[] = {10U, 0U};
+static unsigned int ng3[] = {260000U, 0U};
 static int ng4[] = {1, 0};
 static unsigned int ng5[] = {1U, 0U};
 static unsigned int ng6[] = {11U, 0U};
