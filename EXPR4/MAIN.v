@@ -102,6 +102,10 @@ module register(clk, Reset, R_Addr_A, R_Addr_B, W_Addr, W_Data, Write_Reg, R_Dat
 					begin
 						REGISTERS[W_Addr]<=W_Data;
 					end
+				else
+					begin
+						REGISTERS[W_Addr]<=REGISTERS[W_Addr];
+					end
 			end
 	 end
 endmodule
