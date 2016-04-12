@@ -35,6 +35,7 @@ module TEST;
 
 	// Outputs
 	wire [31:0] LED;
+	wire [31:0] A, B;
 	wire OF;
 	wire ZF;
 
@@ -43,6 +44,8 @@ module TEST;
 		.clk(clk), 
 		.R_Addr_A(R_Addr_A), 
 		.R_Addr_B(R_Addr_B), 
+		.A(A),
+		.B(B),
 		.W_Addr(W_Addr), 
 		.Reset(Reset), 
 		.Write_Reg(Write_Reg), 
@@ -56,51 +59,116 @@ module TEST;
 		// Initialize Inputs
 		clk = 0;
 		Reset = 1;
-		Write_Reg = 0;
+		Write_Reg = 1;
+		ALU_OP = 0;
 		#10;
 		Reset = 0;
-		
-		
-		R_Addr_A = 0;
-		R_Addr_B = 1;
-		W_Addr = 3;
-		Reset = 0;
-		ALU_OP = 3;
 
-		// Wait 100 ns for global reset to finish
-		#4;
-		
-		R_Addr_A = 0;
-		R_Addr_B = 1;
-		W_Addr = 3;
-		Reset = 0;
-		
-		ALU_OP = 3;
+ R_Addr_A = 1;
+	    R_Addr_B = 1;
+	    W_Addr = 1;
+	    ALU_OP = 3;
+	    #10;
 
-		// Wait 100 ns for global reset to finish
-		#4;
-        
-		R_Addr_A = 3;
-		R_Addr_B = 4;
-		W_Addr = 1;
-		Reset = 0;
-		ALU_OP = 3;
+ R_Addr_A = 1;
+	    R_Addr_B = 2;
+	    W_Addr = 1;
+	    ALU_OP = 3;
+	    #10;
 
-		// Wait 100 ns for global reset to finish
-		#4;
-		
-		R_Addr_A = 3;
-		R_Addr_B = 4;
-		W_Addr = 1;
-		Reset = 0;
-		ALU_OP = 3;
+ R_Addr_A = 1;
+	    R_Addr_B = 3;
+	    W_Addr = 1;
+	    ALU_OP = 3;
+	    #10;
 
-		// Wait 100 ns for global reset to finish
-		#4;
+		 
+		 // 1 
+		 
+		 R_Addr_A = 2;
+	    R_Addr_B = 1;
+	    W_Addr = 2;
+	    ALU_OP = 3;
+	    #10;
+
+ R_Addr_A = 2;
+	    R_Addr_B = 2;
+	    W_Addr = 2;
+	    ALU_OP = 3;
+	    #10;
+
+ R_Addr_A = 2;
+	    R_Addr_B = 3;
+	    W_Addr = 2;
+	    ALU_OP = 3;
+	    #10;
+
+ R_Addr_A = 2;
+	    R_Addr_B = 4;
+	    W_Addr = 2;
+	    ALU_OP = 3;
+	    #10;
+		 
+		 // 2
+		 
+		 
+R_Addr_A = 1;
+	    R_Addr_B = 2;
+	    W_Addr = 3;
+		ALU_OP = 0;
+	    #10;
+
+ R_Addr_A = 1;
+	    R_Addr_B = 2;
+	    W_Addr = 4;
+		ALU_OP = 1;
+	    #10;
+
+ R_Addr_A = 1;
+	    R_Addr_B = 2;
+	    W_Addr = 5;
+		ALU_OP = 2;
+	    #10;
+
+ R_Addr_A = 1;
+	    R_Addr_B = 2;
+	    W_Addr = 6;
+		ALU_OP = 3;
+	    #10;
+ R_Addr_A = 2;
+	    R_Addr_B = 2;
+	    W_Addr = 7;
+		ALU_OP = 3;
+	    #10;
+
+
+ R_Addr_A = 1;
+	    R_Addr_B = 2;
+	    W_Addr = 7;
+		ALU_OP = 4;
+	    #10;
+
+ R_Addr_A = 1;
+	    R_Addr_B = 2;
+	    W_Addr = 8;
+		ALU_OP = 5;
+	    #10;
+
+ R_Addr_A = 1;
+	    R_Addr_B = 2;
+	    W_Addr = 9;
+		ALU_OP = 6;
+	    #10;
+
+ R_Addr_A = 1;
+	    R_Addr_B = 2;
+	    W_Addr = 10;
+		ALU_OP = 7;
+	    #10;
 
 	end
    always #1 clk = ~clk;
-	always #1 Write_Reg = ~Write_Reg;
+	//always #1 Write_Reg = ~Write_Reg;
       
 endmodule
 

@@ -26,11 +26,11 @@ module MAIN(
 		input Reset,
 		input Write_Reg,
 		input [2:0] ALU_OP,
+		output wire [31:0] A,B,
 		output wire [31:0] LED,
 		output OF, ZF
     );
 	
-	wire [31:0] A, B;
 	wire [31:0] F;
 	//wire [31:0] W_Data;
 	
