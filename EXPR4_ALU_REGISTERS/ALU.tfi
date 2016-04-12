@@ -1,0 +1,14 @@
+
+
+
+// Instantiate the module
+ALU instance_name (
+    .A(A), 
+    .B(B), 
+    .ZF(ZF), 
+    .OF(OF), 
+    .F(F), 
+    .ALU_OP(ALU_OP)
+    );
+
+
