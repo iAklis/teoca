@@ -26,7 +26,7 @@ module MAIN(
 		input Reset,
 		input Write_Reg,
 		input [2:0] ALU_OP,
-		output reg [31:0] LED,
+		output wire [31:0] LED,
 		output OF, ZF
     );
 	
@@ -40,7 +40,7 @@ module MAIN(
     .R_Addr_A(R_Addr_A), 
     .R_Addr_B(R_Addr_B), 
     .W_Addr(W_Addr), 
-    .W_Data(F), 
+    .W_Data(LED), 
     .Write_Reg(Write_Reg), 
     .R_Data_A(A), 
     .R_Data_B(B)
@@ -51,11 +51,11 @@ module MAIN(
     .B(B), 
     .ZF(ZF), 
     .OF(OF), 
-    .F(F), 
+    .F(LED), 
     .ALU_OP(ALU_OP)
     );
-	 
-
+	
+	
 endmodule
 
 
