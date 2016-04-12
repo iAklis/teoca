@@ -82,12 +82,12 @@ module register(clk, Reset, R_Addr_A, R_Addr_B, W_Addr, W_Data, Write_Reg, R_Dat
 	 output [31:0] R_Data_A;
 	 output [31:0] R_Data_B;
 	 
-	 reg [31:0] REGISTERS[0:31];
+	 reg [31:0] REGISTERS[31:0];
 	 
 	 integer i;
 	 assign R_Data_A = REGISTERS[R_Addr_A];
 	 assign R_Data_B = REGISTERS[R_Addr_B];
-	 always @(posedge clk or posedge Reset)
+	 always @(posedge clk)
 	 begin
 		if(Reset)
 			begin
