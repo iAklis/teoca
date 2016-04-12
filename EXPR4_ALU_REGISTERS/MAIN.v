@@ -119,9 +119,12 @@ module ALU(A, B, ZF, OF, F, ALU_OP);
                 F = A^B;
                 OF = 0;
             end
-            3'd3:begin //nor
-                F = ~(A|B);
-                OF = 0;
+            //3'd3:begin //nor
+            //   F = ~(A|B);
+            //    OF = 0;
+				3'd3:begin //inc
+					{C32, F} = A + 1'b1;
+					OF = A[31]^B[31]^F[31]^C32;
             end
             3'd4:begin //add
                 {C32, F} = A + B;

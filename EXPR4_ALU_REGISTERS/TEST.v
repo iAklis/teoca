@@ -65,7 +65,7 @@ module TEST;
 		R_Addr_B = 1;
 		W_Addr = 3;
 		Reset = 0;
-		ALU_OP = 0;
+		ALU_OP = 3;
 
 		// Wait 100 ns for global reset to finish
 		#4;
@@ -75,7 +75,7 @@ module TEST;
 		W_Addr = 3;
 		Reset = 0;
 		
-		ALU_OP = 0;
+		ALU_OP = 3;
 
 		// Wait 100 ns for global reset to finish
 		#4;
@@ -84,7 +84,7 @@ module TEST;
 		R_Addr_B = 4;
 		W_Addr = 1;
 		Reset = 0;
-		ALU_OP = 0;
+		ALU_OP = 3;
 
 		// Wait 100 ns for global reset to finish
 		#4;
@@ -93,14 +93,14 @@ module TEST;
 		R_Addr_B = 4;
 		W_Addr = 1;
 		Reset = 0;
-		ALU_OP = 0;
+		ALU_OP = 3;
 
 		// Wait 100 ns for global reset to finish
 		#4;
 
 	end
    always #1 clk = ~clk;
-	always #10 Write_Reg = ~Write_Reg;
+	always #1 Write_Reg = ~Write_Reg;
       
 endmodule
 
