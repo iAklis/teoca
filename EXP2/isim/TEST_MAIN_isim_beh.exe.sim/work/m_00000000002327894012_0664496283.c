@@ -21,7 +21,7 @@
 #include <malloc.h>
 #define alloca _alloca
 #endif
-static const char *ng0 = "//psf/Github/TEOCOA/EXP2/MAIN.v";
+static const char *ng0 = "//Mac/Github/TEOCOA/EXP2/MAIN.v";
 
 
 
