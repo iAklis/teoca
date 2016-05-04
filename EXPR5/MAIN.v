@@ -25,23 +25,27 @@ module MAIN(
 		input Reset,
 		input Write_Reg,
 		input Mem_Write, // Disable
+		input [15:0] offset, //  16 bit (offset)
 		input [2:0] ALU_OP,
-		input [5:0] STORAGE_Addr_R,
+		// input [5:0] STORAGE_Addr_R,
 		input wire [4:0] W_Addr,
-		input wire [4:0] R_Addr_A,
-		input wire [4:0] R_Addr_B, // Disable
-		output wire [31:0] A, Data_Bus, // set A, Data_Bus for debuging
+		input wire [4:0] RS,
+		input wire [4:0] RT, // Disable
+		output wire [31:0] A,
+		output wire [31:0] Data_Bus, // set A, Data_Bus for debuging
 		output wire [31:0] Result,   // ALU Reslut
 		output OF, ZF
 	 );
 	 
+	 wire [31:0] B;
+	 
 	 register REG (
     .clk(clk), 
     .Reset(Reset), 
-    .R_Addr_A(R_Addr_A), 
-    .R_Addr_B(R_Addr_B), 
+    .R_Addr_A(RS), 
+    .R_Addr_B(RT), 
     .W_Addr(W_Addr), 
-    .W_Data(Result), 
+    .W_Data(Data_Bus), 
     .Write_Reg(Write_Reg), 
     .R_Data_A(A), 
     .R_Data_B(B)
@@ -49,7 +53,7 @@ module MAIN(
 	 
 	ALU ALUP (
     .A(A), 
-    .B(Data_Bus), 
+    .B({{16{1'b0}}, offset}), 
     .ZF(ZF), 
     .OF(OF), 
     .F(Result), 
@@ -58,10 +62,10 @@ module MAIN(
 	 
 	 
 	 RAM_B STORAGEM (
-	  .clka(clkb), // input clka
+	  .clka(clkb), // input clka 100M
 	  .wea(Mem_Write), // input [0 : 0] wea     			 Meanless at this
-	  .addra(STORAGE_Addr_R), // input [5 : 0] addra
-	  .dina(Result), // input [31 : 0] dina   			 Meanless at this
+	  .addra(Result[7:2]), // input [5 : 0] addra
+	  .dina(B), // input [31 : 0] dina   			 Meanless at this
 	  .douta(Data_Bus) // output [31 : 0] douta
 	);
 	 
@@ -141,7 +145,7 @@ module register(clk, Reset, R_Addr_A, R_Addr_B, W_Addr, W_Data, Write_Reg, R_Dat
 	 integer i;
 	 assign R_Data_A = REGISTERS[R_Addr_A];
 	 assign R_Data_B = REGISTERS[R_Addr_B];
-	 always @(posedge clk)
+	 always @(*)
 	 begin
 		if(Reset)
 			begin

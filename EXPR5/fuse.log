@@ -8,10 +8,9 @@ Analyzing Verilog file "X:/TEOCOA/EXPR5/MAIN.v" into library work
 Analyzing Verilog file "X:/TEOCOA/EXPR5/TEST_MAIN.v" into library work
 Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
-WARNING:HDLCompiler:189 - "X:/TEOCOA/EXPR5/MAIN.v" Line 47: Size mismatch in connection of port <R_Data_B>. Formal port size is 32-bit while actual signal size is 1-bit.
 Completed static elaboration
-Fuse Memory Usage: 66820 KB
-Fuse CPU Usage: 343 ms
+Fuse Memory Usage: 66816 KB
+Fuse CPU Usage: 374 ms
 Compiling module register
 Compiling module ALU
 Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
@@ -26,4 +25,4 @@ Time Resolution for simulation is 1ps.
 Compiled 10 Verilog Units
 Built simulation executable X:/TEOCOA/EXPR5/TEST_MAIN_isim_beh.exe
 Fuse Memory Usage: 74056 KB
-Fuse CPU Usage: 515 ms
+Fuse CPU Usage: 546 ms

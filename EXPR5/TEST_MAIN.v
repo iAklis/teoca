@@ -4,7 +4,7 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   10:21:11 05/04/2016
+// Create Date:   15:49:06 05/04/2016
 // Design Name:   MAIN
 // Module Name:   X:/TEOCOA/EXPR5/TEST_MAIN.v
 // Project Name:  EXPR5
@@ -30,11 +30,11 @@ module TEST_MAIN;
 	reg Reset;
 	reg Write_Reg;
 	reg Mem_Write;
+	reg [15:0] offset;
 	reg [2:0] ALU_OP;
-	reg [5:0] STORAGE_Addr_R;
 	reg [4:0] W_Addr;
-	reg [4:0] R_Addr_A;
-	reg [4:0] R_Addr_B;
+	reg [4:0] RS;
+	reg [4:0] RT;
 
 	// Outputs
 	wire [31:0] A;
@@ -46,15 +46,15 @@ module TEST_MAIN;
 	// Instantiate the Unit Under Test (UUT)
 	MAIN uut (
 		.clk(clk), 
-		.clkb(clk), 
+		.clkb(clkb), 
 		.Reset(Reset), 
 		.Write_Reg(Write_Reg), 
 		.Mem_Write(Mem_Write), 
+		.offset(offset), 
 		.ALU_OP(ALU_OP), 
-		.STORAGE_Addr_R(STORAGE_Addr_R), 
 		.W_Addr(W_Addr), 
-		.R_Addr_A(R_Addr_A), 
-		.R_Addr_B(R_Addr_B), 
+		.RS(RS), 
+		.RT(RT), 
 		.A(A), 
 		.Data_Bus(Data_Bus), 
 		.Result(Result), 
@@ -63,57 +63,51 @@ module TEST_MAIN;
 	);
 
 	initial begin
-		Write_Reg = 1;
-	
 		// Initialize Inputs
 		clk = 0;
 		clkb = 0;
 		Reset = 1;
-		Mem_Write = 0;
-		#10
+		ALU_OP = 4;
+		# 100
+		
+		// lw R1, [R0 + 4]
 		Reset = 0;
-				
-		
-		R_Addr_A = 0;
-		ALU_OP = 1;
-		STORAGE_Addr_R = 0;
+		offset = 4;
+		//Write_Reg = 1;
 		W_Addr = 1;
-		
-		R_Addr_B = 0;
+		Write_Reg = 1;
+		RS = 0;
+		RT = 0;
+		# 25 clk = ~clk;
+		# 25 clk = ~clk;
+		# 25
 
 		// Wait 100 ns for global reset to finish
-		#6;
+		#100;
 		
 		
-		R_Addr_A = 1;
-		ALU_OP = 1;
-		STORAGE_Addr_R = 1;
-		W_Addr = 0;
-		
-		R_Addr_B = 0;
-
-		// Wait 100 ns for global reset to finish
-		#6;
-		
-		
-		R_Addr_A = 0;
-		ALU_OP = 1;
-		STORAGE_Addr_R = 2;
-		W_Addr = 0;
-		
-		R_Addr_B = 0;
-
-		// Wait 100 ns for global reset to finish
-		#6;
-
-		
-		clkb = 1;
+		// sw R1, [R1 + 4]
+		RS = 1;
+		RT = 1;
+		Write_Reg = 0;
 		Mem_Write = 1;
-		STORAGE_Addr_R = 0;
+		#25 clkb = ~clkb;
+		#25 clkb = ~clkb;
+        
+		// Add stimulus here
+		
+		// lw R2, [R1 + 8]
+		#25
+		offset = 8;
+		W_Addr = 2;
+		Write_Reg = 1;
+		Mem_Write = 0;
+		# 25 clkb = ~clkb;
+		# 25 clkb = ~clkb;
+		# 25 clk = ~clk;
+		# 25 clk = ~clk;
 
 	end
-	
-	always #1 clk = ~clk;
-	always #0.5 Write_Reg = ~Write_Reg;
+      
 endmodule
 
