@@ -21,19 +21,19 @@
 
 module MAIN(
 		input clk,
+		input clkb,
 		input Reset,
 		input Write_Reg,
+		input Mem_Write, // Disable
 		input [2:0] ALU_OP,
 		input [5:0] STORAGE_Addr_R,
 		input wire [4:0] W_Addr,
 		input wire [4:0] R_Addr_A,
-		input wire [4:0] R_Addr_B,
-		output wire [31:0] A,B,  // set A, B for debuging
-		output wire [31:0] Result,
+		input wire [4:0] R_Addr_B, // Disable
+		output wire [31:0] A, Data_Bus, // set A, Data_Bus for debuging
+		output wire [31:0] Result,   // ALU Reslut
 		output OF, ZF
 	 );
-	 
-	 wire [31:0] Data_Bus;
 	 
 	 register REG (
     .clk(clk), 
@@ -41,7 +41,7 @@ module MAIN(
     .R_Addr_A(R_Addr_A), 
     .R_Addr_B(R_Addr_B), 
     .W_Addr(W_Addr), 
-    .W_Data(Data_Bus), 
+    .W_Data(Result), 
     .Write_Reg(Write_Reg), 
     .R_Data_A(A), 
     .R_Data_B(B)
@@ -52,16 +52,16 @@ module MAIN(
     .B(Data_Bus), 
     .ZF(ZF), 
     .OF(OF), 
-    .F(F), 
+    .F(Result), 
     .ALU_OP(ALU_OP)
     );
 	 
 	 
 	 RAM_B STORAGEM (
-	  .clka(clk), // input clka
-	  .wea(Mem_Write), // input [0 : 0] wea
-	  .addra(Mem_Addr), // input [5 : 0] addra
-	  .dina(F), // input [31 : 0] dina
+	  .clka(clkb), // input clka
+	  .wea(Mem_Write), // input [0 : 0] wea     			 Meanless at this
+	  .addra(STORAGE_Addr_R), // input [5 : 0] addra
+	  .dina(Result), // input [31 : 0] dina   			 Meanless at this
 	  .douta(Data_Bus) // output [31 : 0] douta
 	);
 	 
