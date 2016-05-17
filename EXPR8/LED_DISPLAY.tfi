@@ -1,0 +1,13 @@
+
+
+
+// Instantiate the module
+LED_DISPLAY instance_name (
+    .OF(OF), 
+    .ZF(ZF), 
+    .SW(SW), 
+    .ALU_F(ALU_F), 
+    .LED(LED)
+    );
+
+

@@ -42,6 +42,23 @@ module MAIN(
     .FR_OF(OF)
     );
 	
+	LED_DISPLAY LEDoutput (
+    .OF(OF), 
+    .ZF(ZF), 
+    .SW(SW), 
+    .ALU_F(ALU_F), 
+    .LED(LED)
+    );
+	
+endmodule
+
+
+module LED_DISPLAY(
+		input OF, ZF,
+		input [2:0] SW,
+		input [31:0] ALU_F,
+		output reg [7:0] LED
+	);
 	always @(*)
 	begin
 		case(SW[2:0])
@@ -67,9 +84,8 @@ module MAIN(
 			end
 		endcase
 	end
-	
-endmodule
 
+endmodule
 
 module ALU(A, B, ZF, OF, F, ALU_OP);
 	input [2:0] ALU_OP;
@@ -216,10 +232,9 @@ module BTN_OK(
 	);
 	
 	wire BTN_Down;
-	wire BTN_Up;
 	reg BTN1;
 	reg BTN2;
-	reg [21:0] cnt;
+	reg [23:0] cnt;
 	reg BTN_20ms_1, BTN_20ms_2;
 	
 	always @(posedge clk)
@@ -234,24 +249,16 @@ module BTN_OK(
 	begin
 		if(BTN_Down)
 			begin
-				cnt <= 22'b0;
+				cnt <= 24'b0;
 				BTN_out <= 1'b1;
 			end
 		else
 			begin
 				cnt<=cnt+1'b1;
 			end
-		if(cnt == 22'h2000)
-		begin
-			BTN_20ms_1 <= BTN;
-			BTN_20ms_2 <= BTN_20ms_1;
-		end
-		
-		if(BTN_Up)
+		if(cnt == 24'h1E8480)
 			BTN_out <= 1'b0;
 	end
-	
-	assign BTN_Up = BTN_20ms_2 && (~BTN_20ms_1);
 
 endmodule
 
