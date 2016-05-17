@@ -1,0 +1,13 @@
+
+
+
+// Instantiate the module
+R_CPU instance_name (
+    .clk(clk), 
+    .rst(rst), 
+    .ALU_F(ALU_F), 
+    .FR_ZF(FR_ZF), 
+    .FR_OF(FR_OF)
+    );
+
+

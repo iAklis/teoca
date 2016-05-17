@@ -1,0 +1,11 @@
+
+
+
+// Instantiate the module
+BTN_OK instance_name (
+    .clk(clk), 
+    .BTN(BTN), 
+    .BTN_out(BTN_out)
+    );
+
+
