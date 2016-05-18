@@ -22,8 +22,9 @@ module MAIN(
 		input clk_100,
 		input Step_BTN,
 		input rst,
-		input [2:0] SW,
-		output reg [7:0] LED
+		//input [2:0] SW,
+		//output reg [7:0] LED
+		output [31:0] F
     );
 	wire btnclk, ZF, OF;
 	wire [31:0] ALU_F;
@@ -41,7 +42,7 @@ module MAIN(
     .FR_ZF(ZF), 
     .FR_OF(OF)
     );
-	
+/*	
 	LED_DISPLAY LEDoutput (
     .OF(OF), 
     .ZF(ZF), 
@@ -49,7 +50,8 @@ module MAIN(
     .ALU_F(ALU_F), 
     .LED(LED)
     );
-	
+*/	
+	assign F = ALU_F;
 endmodule
 
 
@@ -164,12 +166,12 @@ module register(clk, Reset, R_Addr_A, R_Addr_B, W_Addr, W_Data, Write_Reg, R_Dat
 	 output [31:0] R_Data_A;
 	 output [31:0] R_Data_B;
 	 
-	 reg [31:0] REGISTERS[31:0];
+	 reg [31:0] REGISTERS[0:31];
 	 
 	 integer i;
-	 assign R_Data_A = REGISTERS[R_Addr_A];
-	 assign R_Data_B = REGISTERS[R_Addr_B];
-	 always @(posedge clk)
+	 assign R_Data_A = (R_Addr_A==5'b00000)? 32'h0000_0000 : REGISTERS[R_Addr_A];
+	 assign R_Data_B = (R_Addr_B==5'b00000)? 32'h0000_0000 : REGISTERS[R_Addr_B];
+	 always @(posedge clk or posedge Reset)
 	 begin
 		if(Reset)
 			begin
@@ -180,14 +182,16 @@ module register(clk, Reset, R_Addr_A, R_Addr_B, W_Addr, W_Data, Write_Reg, R_Dat
 			end
 		else
 			begin
-				if(Write_Reg)
+				if(Write_Reg && (W_Addr != 5'b00000))
 					begin
 						REGISTERS[W_Addr]<=W_Data;
 					end
+				/*
 				else
 					begin
 						REGISTERS[W_Addr]<=REGISTERS[W_Addr];
 					end
+				*/
 			end
 	 end
 endmodule
@@ -266,13 +270,14 @@ module R_CPU (
 		input clk,
 		input rst,
 		output [31:0] ALU_F,
-		output reg FR_ZF,FR_OF
+		output reg FR_ZF,FR_OF,
+		output wire [4:0] rs, rt, rd,
+		output wire [5:0] OP, func,
+		output wire [31:0] ALU_A, ALU_B
 	);
 	wire ZF, OF;
 	wire [31:0] Inst_code;
-	wire [4:0] rs, rt, rd;
-	wire [5:0] OP, func;
-	wire [31:0] ALU_A, ALU_B;
+	
 	reg Write_Reg;
 	reg [2:0] ALU_OP;
 	
@@ -325,7 +330,7 @@ ALU theALU (
 					6'b100110: ALU_OP = 3'b010;
 					6'b100111: ALU_OP = 3'b011;
 					6'b101011: ALU_OP = 3'b110;
-					6'b100100: ALU_OP = 3'b111;
+					6'b000100: ALU_OP = 3'b111;
 					default: ALU_OP = 3'b000;
 				endcase
 			end

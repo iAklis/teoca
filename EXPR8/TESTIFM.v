@@ -4,15 +4,15 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   01:02:46 05/18/2016
-// Design Name:   MAIN
-// Module Name:   Y:/TEOCOA/EXPR8/TEST.v
+// Create Date:   10:37:12 05/18/2016
+// Design Name:   IF_M
+// Module Name:   Y:/TEOCOA/EXPR8/TESTIFM.v
 // Project Name:  EXPR8
 // Target Device:  
 // Tool versions:  
 // Description: 
 //
-// Verilog Test Fixture created by ISE for module: MAIN
+// Verilog Test Fixture created by ISE for module: IF_M
 //
 // Dependencies:
 // 
@@ -22,44 +22,36 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-module TEST;
+module TESTIFM;
 
 	// Inputs
-	reg clk_100;
-	reg Step_BTN;
-	reg rst;
-	//reg [2:0] SW;
+	reg [0:0] clka;
+	reg [0:0] rst;
 
 	// Outputs
-	//wire [7:0] LED;
-	wire [31:0] F;
+	wire [31:0] Inst_code;
 
 	// Instantiate the Unit Under Test (UUT)
-	MAIN uut (
-		.clk_100(clk_100), 
-		.Step_BTN(Step_BTN), 
+	IF_M uut (
+		.clka(clka), 
 		.rst(rst), 
-		//.SW(SW), 
-		//.LED(LED)
-		.F(F)
+		.Inst_code(Inst_code)
 	);
-
+	always #50 clka = ~clka;
 	initial begin
 		// Initialize Inputs
-		clk_100 = 1;
-		Step_BTN = 1;
-		rst = 1;
-		//SW = 0;
+		clka = 0;
+		rst = 0;
 
 		// Wait 100 ns for global reset to finish
-		#200;
-        
-		rst = 0;
 		#100;
-
-
+      rst = 1;
+		// Add stimulus here
+		
+		#100;
+		rst = 0;
+		
 	end
-	always #50 clk_100 = ~clk_100;
-      
+  
 endmodule
 
