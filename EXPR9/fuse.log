@@ -1,0 +1,26 @@
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o Y:/TEOCOA/EXPR9/TESTIFM_isim_beh.exe -prj Y:/TEOCOA/EXPR9/TESTIFM_beh.prj work.TESTIFM work.glbl 
+ISim P.20131013 (signature 0x8ef4fb42)
+Number of CPUs detected in this system: 2
+Turning on mult-threading, number of parallel sub-compilation jobs: 4 
+Determining compilation order of HDL files
+Analyzing Verilog file "Y:/TEOCOA/EXPR9/ipcore_dir/IROM.v" into library work
+Analyzing Verilog file "Y:/TEOCOA/EXPR9/MAIN.v" into library work
+Analyzing Verilog file "Y:/TEOCOA/EXPR9/TESTIFM.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 66816 KB
+Fuse CPU Usage: 358 ms
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
+Compiling module BLK_MEM_GEN_V7_3_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V7_3(C_FAMILY="spart...
+Compiling module IROM
+Compiling module IF_M
+Compiling module TESTIFM
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Compiled 8 Verilog Units
+Built simulation executable Y:/TEOCOA/EXPR9/TESTIFM_isim_beh.exe
+Fuse Memory Usage: 74056 KB
+Fuse CPU Usage: 484 ms

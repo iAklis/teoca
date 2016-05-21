@@ -1,0 +1,11 @@
+
+
+
+// Instantiate the module
+IF_M instance_name (
+    .clka(clka), 
+    .rst(rst), 
+    .Inst_code(Inst_code)
+    );
+
+
