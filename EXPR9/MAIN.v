@@ -30,7 +30,7 @@ module RICPU(
 		input rst,
 		output [31:0] ALU_F,
 		output reg FR_ZF, FR_OF,
-		output [31:0] Mem_R_data
+		output [31:0] Mem_R_Data
 	);
 	reg Write_Reg;
 	reg Mem_Write;
@@ -86,7 +86,7 @@ module RICPU(
     );
 	 
 	IF_M IFM (
-	.clka(clka), 
+	.clka(clk), 
 	.rst(rst), 
 	.Inst_code(Inst_code)
 	);
