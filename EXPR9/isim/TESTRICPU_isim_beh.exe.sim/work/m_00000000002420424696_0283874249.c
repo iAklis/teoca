@@ -154,7 +154,7 @@ LAB3:    goto *t2;
 
 LAB2:    xsi_set_current_line(49, ng0);
     t2 = (t0 + 1856);
-    xsi_process_wait(t2, 2500LL);
+    xsi_process_wait(t2, 1000LL);
     *((char **)t1) = &&LAB4;
 
 LAB1:    return;

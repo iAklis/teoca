@@ -46,7 +46,7 @@ module TESTRICPU;
 		.Mem_R_Data(Mem_R_Data)
 	);
 	always #5 clk = ~clk;
-	always #2.5 clk_ram = ~clk_ram;
+	always #1 clk_ram = ~clk_ram;
 	initial begin
 		// Initialize Inputs
 		clk = 0;
