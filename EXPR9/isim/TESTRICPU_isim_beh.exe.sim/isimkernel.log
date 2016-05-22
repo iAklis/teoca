@@ -2,9 +2,27 @@ Command line:
    TESTRICPU_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  1159
+     -socket  1217
 
-Sun May 22 15:52:50 2016
+Sun May 22 18:40:15 2016
 
 
  Elaboration Time: 0.1875 sec
+
+ Current Memory Usage: 361.517 Meg
+
+ Total Signals          : 347
+ Total Nets             : 1637
+ Total Signal Drivers   : 149
+ Total Blocks           : 40
+ Total Primitive Blocks : 31
+ Total Processes        : 179
+ Total Traceable Variables  : 673
+ Total Scalar Nets and Variables : 45796
+
+ Total Simulation Time: 0.265625 sec
+
+ Current Memory Usage: 362.566 Meg
+
+Sun May 22 18:40:48 2016
+

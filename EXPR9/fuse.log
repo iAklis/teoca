@@ -9,9 +9,10 @@ Analyzing Verilog file "Y:/TEOCOA/EXPR9/MAIN.v" into library work
 Analyzing Verilog file "Y:/TEOCOA/EXPR9/TESTRICPU.v" into library work
 Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
+WARNING:HDLCompiler:189 - "Y:/TEOCOA/EXPR9/MAIN.v" Line 109: Size mismatch in connection of port <addra>. Formal port size is 7-bit while actual signal size is 6-bit.
 Completed static elaboration
-Fuse Memory Usage: 66816 KB
-Fuse CPU Usage: 421 ms
+Fuse Memory Usage: 66820 KB
+Fuse CPU Usage: 406 ms
 Compiling module ALU
 Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
 Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
@@ -20,6 +21,8 @@ Compiling module BLK_MEM_GEN_V7_3(C_FAMILY="spart...
 Compiling module IROM
 Compiling module IF_M
 Compiling module register
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
 Compiling module BLK_MEM_GEN_V7_3_mem_module(C_CO...
 Compiling module BLK_MEM_GEN_V7_3(C_FAMILY="spart...
 Compiling module RAM
@@ -28,7 +31,7 @@ Compiling module TESTRICPU
 Compiling module glbl
 Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
-Compiled 14 Verilog Units
+Compiled 16 Verilog Units
 Built simulation executable Y:/TEOCOA/EXPR9/TESTRICPU_isim_beh.exe
 Fuse Memory Usage: 74056 KB
-Fuse CPU Usage: 765 ms
+Fuse CPU Usage: 718 ms
