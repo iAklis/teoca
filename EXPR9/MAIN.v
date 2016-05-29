@@ -28,7 +28,9 @@ module RICPU(
 		input clk,
 		input clk_ram,
 		input rst,
+		output [31:0] A, B,
 		output [31:0] ALU_F,
+		output [6:0] MW,
 		output reg FR_ZF, FR_OF,
 		output [31:0] Mem_R_Data
 	);
@@ -53,8 +55,7 @@ module RICPU(
 	wire [4:0] Reg_W_Addr;
 	wire [31:0] Reg_W_Data;
 
-	wire [31:0] Mem_W_Data;
-	wire [5:0] Mem_Addr;
+	wire [6:0] Mem_Addr;
 	
 	//I
 	reg [0:0] rd_rt_s;
@@ -69,13 +70,15 @@ module RICPU(
 	// assign shamt = [10:6];
 	assign func = Inst_code[5:0];
 	assign imm = Inst_code[15:0];
-	assign Mem_Addr = ALU_F[7:2];
+	assign Mem_Addr = {1'b0,ALU_F[5:0]};
 	
 	assign Reg_W_Addr = (rd_rt_s) ? rt_addr : rd_addr;
 	assign imm_Data = (imm_s) ? {{16{imm[15]}},imm}: {{16{1'b0}},imm};
 	assign ALU_B = (rt_imm_s) ? imm_Data : Reg_Data_B;
 	assign Reg_W_Data = (alu_mem_s) ? Mem_R_Data : ALU_F;
-	
+	assign MW = Mem_Addr;
+	assign A = ALU_A;
+	assign B = ALU_B;
 	ALU theALU (
     .A(ALU_A), 
     .B(ALU_B), 
@@ -104,11 +107,11 @@ module RICPU(
     );
 	
 	RAM theRAM (
-	  .clka(clk_ram), // input clka
-	  .wea(Mem_Write), // input [0 : 0] wea
-	  .addra(Mem_Addr), // input [5 : 0] addra
-	  .dina(Mem_W_Data), // input [31 : 0] dina
-	  .douta(Mem_R_Data) // output [31 : 0] douta
+		.clka(clk_ram), // input clka
+		.wea(Mem_Write), // input [0 : 0] wea
+		.addra(Mem_Addr), // input [6 : 0] addra
+		.dina(Reg_Data_B), // input [31 : 0] dina
+		.douta(Mem_R_Data) // output [31 : 0] douta
 	);
 	
 	always @(*)
@@ -297,7 +300,7 @@ module ALU(A, B, ZF, OF, F, ALU_OP);
 					end
 				else 
 					begin
-						F = 32'd1;
+						F = 32'd0;
 					end
 				OF = 0;
 			end

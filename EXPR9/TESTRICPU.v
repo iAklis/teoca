@@ -33,7 +33,9 @@ module TESTRICPU;
 	wire [31:0] ALU_F;
 	wire FR_ZF;
 	wire FR_OF;
+	wire [31:0] A, B;
 	wire [31:0] Mem_R_Data;
+	wire [6:0] MW;
 
 	// Instantiate the Unit Under Test (UUT)
 	RICPU uut (
@@ -43,23 +45,25 @@ module TESTRICPU;
 		.ALU_F(ALU_F), 
 		.FR_ZF(FR_ZF), 
 		.FR_OF(FR_OF), 
+		.A(A),
+		.B(B),
+		.MW(MW),
 		.Mem_R_Data(Mem_R_Data)
 	);
-	always #5 clk = ~clk;
-	//always #1 clk_ram = ~clk_ram;
+	always #4 clk = ~clk;
+	always #1 clk_ram = ~clk_ram;
 	initial begin
 		// Initialize Inputs
 		clk = 0;
 		clk_ram = 0;
 		rst = 0;
-
+	
 		// Wait 100 ns for global reset to finish
-		#10;
+		#4;
 		rst = 1;
         
-		#10;
+		#4;
 		rst = 0;
-
 	end
       
 endmodule

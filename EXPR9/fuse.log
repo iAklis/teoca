@@ -1,18 +1,17 @@
-Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o Y:/TEOCOA/EXPR9/TESTRICPU_isim_beh.exe -prj Y:/TEOCOA/EXPR9/TESTRICPU_beh.prj work.TESTRICPU work.glbl 
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o X:/TEOCOA/EXPR9/TESTRICPU_isim_beh.exe -prj X:/TEOCOA/EXPR9/TESTRICPU_beh.prj work.TESTRICPU work.glbl 
 ISim P.20131013 (signature 0x8ef4fb42)
 Number of CPUs detected in this system: 2
 Turning on mult-threading, number of parallel sub-compilation jobs: 4 
 Determining compilation order of HDL files
-Analyzing Verilog file "Y:/TEOCOA/EXPR9/ipcore_dir/RAM.v" into library work
-Analyzing Verilog file "Y:/TEOCOA/EXPR9/ipcore_dir/IROM.v" into library work
-Analyzing Verilog file "Y:/TEOCOA/EXPR9/MAIN.v" into library work
-Analyzing Verilog file "Y:/TEOCOA/EXPR9/TESTRICPU.v" into library work
+Analyzing Verilog file "X:/TEOCOA/EXPR9/ipcore_dir/RAM.v" into library work
+Analyzing Verilog file "X:/TEOCOA/EXPR9/ipcore_dir/IROM.v" into library work
+Analyzing Verilog file "X:/TEOCOA/EXPR9/MAIN.v" into library work
+Analyzing Verilog file "X:/TEOCOA/EXPR9/TESTRICPU.v" into library work
 Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
-WARNING:HDLCompiler:189 - "Y:/TEOCOA/EXPR9/MAIN.v" Line 109: Size mismatch in connection of port <addra>. Formal port size is 7-bit while actual signal size is 6-bit.
 Completed static elaboration
-Fuse Memory Usage: 66820 KB
-Fuse CPU Usage: 406 ms
+Fuse Memory Usage: 66816 KB
+Fuse CPU Usage: 452 ms
 Compiling module ALU
 Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
 Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
@@ -30,8 +29,7 @@ Compiling module RICPU
 Compiling module TESTRICPU
 Compiling module glbl
 Time Resolution for simulation is 1ps.
-Waiting for 1 sub-compilation(s) to finish...
 Compiled 16 Verilog Units
-Built simulation executable Y:/TEOCOA/EXPR9/TESTRICPU_isim_beh.exe
+Built simulation executable X:/TEOCOA/EXPR9/TESTRICPU_isim_beh.exe
 Fuse Memory Usage: 74056 KB
-Fuse CPU Usage: 718 ms
+Fuse CPU Usage: 765 ms
