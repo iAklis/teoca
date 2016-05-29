@@ -638,7 +638,7 @@ LAB68:    t14 = (t10 + 4);
 LAB71:    xsi_set_current_line(131, ng0);
 
 LAB74:    xsi_set_current_line(132, ng0);
-    t2 = ((char*)((ng3)));
+    t2 = ((char*)((ng1)));
     t3 = (t0 + 1012);
     xsi_vlogvar_assign_value(t3, t2, 0, 0, 32);
 

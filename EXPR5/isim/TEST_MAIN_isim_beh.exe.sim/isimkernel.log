@@ -2,9 +2,9 @@ Command line:
    TEST_MAIN_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  1318
+     -socket  1130
 
-Wed May 04 16:12:46 2016
+Sun May 29 21:48:52 2016
 
 
  Elaboration Time: 0.15625 sec
@@ -20,9 +20,9 @@ Wed May 04 16:12:46 2016
  Total Traceable Variables  : 352
  Total Scalar Nets and Variables : 22318
 
- Total Simulation Time: 0.890625 sec
+ Total Simulation Time: 0.171875 sec
 
  Current Memory Usage: 362.488 Meg
 
-Wed May 04 16:15:36 2016
+Sun May 29 21:49:05 2016
 

@@ -10,7 +10,7 @@ Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into libr
 Starting static elaboration
 Completed static elaboration
 Fuse Memory Usage: 66816 KB
-Fuse CPU Usage: 374 ms
+Fuse CPU Usage: 483 ms
 Compiling module register
 Compiling module ALU
 Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
@@ -25,4 +25,4 @@ Time Resolution for simulation is 1ps.
 Compiled 10 Verilog Units
 Built simulation executable X:/TEOCOA/EXPR5/TEST_MAIN_isim_beh.exe
 Fuse Memory Usage: 74056 KB
-Fuse CPU Usage: 546 ms
+Fuse CPU Usage: 905 ms
