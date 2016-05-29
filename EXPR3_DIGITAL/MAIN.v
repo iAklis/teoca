@@ -251,7 +251,7 @@ module ALU(A, B, ZF, OF, F, ALU_OP);
 					end
 				else 
 					begin
-						F = 32'd1;
+						F = 32'd0;
 					end
 				OF = 0;
 			end

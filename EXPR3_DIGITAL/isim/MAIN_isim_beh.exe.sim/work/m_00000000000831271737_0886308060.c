@@ -812,6 +812,6 @@ LAB84:    xsi_set_current_line(270, ng0);
 extern void work_m_00000000000831271737_0886308060_init()
 {
 	static char *pe[] = {(void *)Always_220_0};
-	xsi_register_didat("work_m_00000000000831271737_0886308060", "isim/ALU_TEST_isim_beh.exe.sim/work/m_00000000000831271737_0886308060.didat");
+	xsi_register_didat("work_m_00000000000831271737_0886308060", "isim/MAIN_isim_beh.exe.sim/work/m_00000000000831271737_0886308060.didat");
 	xsi_register_executes(pe);
 }
