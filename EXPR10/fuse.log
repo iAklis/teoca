@@ -1,0 +1,37 @@
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o X:/TEOCOA/EXPR10/TESTRIJCPU_isim_beh.exe -prj X:/TEOCOA/EXPR10/TESTRIJCPU_beh.prj work.TESTRIJCPU work.glbl 
+ISim P.20131013 (signature 0x8ef4fb42)
+Number of CPUs detected in this system: 2
+Turning on mult-threading, number of parallel sub-compilation jobs: 4 
+Determining compilation order of HDL files
+Analyzing Verilog file "X:/TEOCOA/EXPR10/ipcore_dir/RAM.v" into library work
+Analyzing Verilog file "X:/TEOCOA/EXPR10/ipcore_dir/IROM.v" into library work
+Analyzing Verilog file "X:/TEOCOA/EXPR10/MAIN.v" into library work
+Analyzing Verilog file "X:/TEOCOA/EXPR10/TESTRICPU.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:1016 - "X:/TEOCOA/EXPR10/MAIN.v" Line 315: Port wea is not connected to this instance
+Completed static elaboration
+Fuse Memory Usage: 66820 KB
+Fuse CPU Usage: 358 ms
+Compiling module ALU
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
+Compiling module BLK_MEM_GEN_V7_3_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V7_3(C_FAMILY="spart...
+Compiling module IROM
+Compiling module IF_M
+Compiling module register
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
+Compiling module BLK_MEM_GEN_V7_3_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V7_3(C_FAMILY="spart...
+Compiling module RAM
+Compiling module RIJCPU
+Compiling module TESTRIJCPU
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 16 Verilog Units
+Built simulation executable X:/TEOCOA/EXPR10/TESTRIJCPU_isim_beh.exe
+Fuse Memory Usage: 74056 KB
+Fuse CPU Usage: 655 ms

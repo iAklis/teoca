@@ -24,25 +24,32 @@ module MAIN(
 
 endmodule
 
-module RICPU(
+module RIJCPU(
 		input clk,
 		input clk_ram,
 		input rst,
+		output [31:0] A, B,
 		output [31:0] ALU_F,
+		output [6:0] MW,
 		output reg FR_ZF, FR_OF,
-		output [31:0] Mem_R_Data
+		output [31:0] Mem_R_Data,
+		output [31:0] PC
 	);
 	reg Write_Reg;
 	reg Mem_Write;
 	reg [2:0] ALU_OP;
 	
 	wire [31:0] Inst_code;
-	wire [5:0] op_code;	// Inst_code
+	wire [5:0] op_code;
 	wire [4:0] rs_addr;
 	wire [4:0] rt_addr;
 	wire [4:0] rd_addr;
-	// wire [4:0] shamt;
 	wire [5:0] func;
+	
+	wire [25:0] address;
+	reg [31:0] PC_next;
+	// wire [31:0] PC;
+	wire [31:0] PC_new;
 	
 	wire [15:0] imm;
 	wire [31:0] imm_Data;
@@ -53,14 +60,13 @@ module RICPU(
 	wire [4:0] Reg_W_Addr;
 	wire [31:0] Reg_W_Data;
 
-	wire [31:0] Mem_W_Data;
-	wire [5:0] Mem_Addr;
+	wire [6:0] Mem_Addr;
 	
-	//I
-	reg [0:0] rd_rt_s;
+	reg [1:0] w_r_s;
 	reg [0:0] imm_s;
 	reg [0:0] rt_imm_s;
-	reg [0:0] alu_mem_s;
+	reg [1:0] wr_data_s;
+	reg [1:0] PC_s;
 
 	assign op_code = Inst_code[31:26];
 	assign rs_addr = Inst_code[25:21];
@@ -69,13 +75,18 @@ module RICPU(
 	// assign shamt = [10:6];
 	assign func = Inst_code[5:0];
 	assign imm = Inst_code[15:0];
-	assign Mem_Addr = ALU_F[7:2];
+	assign Mem_Addr = {1'b0,ALU_F[5:0]};
 	
-	assign Reg_W_Addr = (rd_rt_s) ? rt_addr : rd_addr;
 	assign imm_Data = (imm_s) ? {{16{imm[15]}},imm}: {{16{1'b0}},imm};
 	assign ALU_B = (rt_imm_s) ? imm_Data : Reg_Data_B;
-	assign Reg_W_Data = (alu_mem_s) ? Mem_R_Data : ALU_F;
 	
+	
+	assign Reg_W_Addr = (w_r_s[1]) ? 5'b11111 : ((w_r_s[0]) ? rt_addr : rd_addr);
+	assign Reg_W_Data = (wr_data_s[1]) ? PC_new : ((wr_data_s[0])? Mem_R_Data : ALU_F);
+	
+	assign MW = Mem_Addr;
+	assign A = ALU_A;
+	assign B = ALU_B;
 	ALU theALU (
     .A(ALU_A), 
     .B(ALU_B), 
@@ -84,12 +95,15 @@ module RICPU(
     .F(ALU_F), 
     .ALU_OP(ALU_OP)
     );
-	 
+	
 	IF_M IFM (
-	.clka(clk), 
-	.rst(rst), 
-	.Inst_code(Inst_code)
-	);
+    .clka(clk), 
+    .rst(rst), 
+    .PC_next(PC_next), 
+    .PC_new(PC_new), 
+    .PC(PC), 
+    .Inst_code(Inst_code)
+    );
 	
 	register REGS(
     .clk(~clk), 
@@ -104,11 +118,11 @@ module RICPU(
     );
 	
 	RAM theRAM (
-	  .clka(clk_ram), // input clka
-	  .wea(Mem_Write), // input [0 : 0] wea
-	  .addra(Mem_Addr), // input [5 : 0] addra
-	  .dina(Mem_W_Data), // input [31 : 0] dina
-	  .douta(Mem_R_Data) // output [31 : 0] douta
+		.clka(clk_ram), // input clka
+		.wea(Mem_Write), // input [0 : 0] wea
+		.addra(Mem_Addr), // input [6 : 0] addra
+		.dina(Reg_Data_B), // input [31 : 0] dina
+		.douta(Mem_R_Data) // output [31 : 0] douta
 	);
 	
 	always @(*)
@@ -116,66 +130,150 @@ module RICPU(
 		ALU_OP = 3'b000;
 		Write_Reg = 1'b0;
 		Mem_Write = 1'b0;
-		rd_rt_s = 1'b0;
+		w_r_s = 2'b00;
 		rt_imm_s = 1'b0;
-		alu_mem_s = 1'b0;
-		if(op_code==6'b000000)
-			begin
-				Write_Reg = 1'b1;
-				case (func)
-					6'b100000: ALU_OP = 3'b100;
-					6'b100010: ALU_OP = 3'b101;
-					6'b100100: ALU_OP = 3'b000;
-					6'b100101: ALU_OP = 3'b001;
-					6'b100110: ALU_OP = 3'b010;
-					6'b100111: ALU_OP = 3'b011;
-					6'b101011: ALU_OP = 3'b110;
-					6'b000100: ALU_OP = 3'b111;
-					default:   ALU_OP = 3'b000;
-				endcase
-			end
-		else
-			begin
-				Write_Reg = 1'b1;
-				rd_rt_s = 1'b1;
-				rt_imm_s = 1'b1;
-				imm_s = 1'b0;
-				case (op_code)
-					6'b001000://addi rt, rs, imm
-						begin
-							imm_s = 1'b1;
-							ALU_OP = 3'b100;
-						end
-					6'b001100://andi rt, rs, imm
-						begin
-							ALU_OP = 3'b000;
-						end
-					6'b001110://xori rt, rs, imm
-						begin
-							ALU_OP = 3'b010;
-						end
-					6'b001011://sltiu rt, rs, imm
-						begin
-							ALU_OP = 3'b110;
-						end
-					6'b100011:// lw rt, offset(rs)
-						begin
-							imm_s = 1'b1;
-							alu_mem_s = 1'b1;
-							ALU_OP = 3'b100;
-						end
-					6'b101011:// sw rt, offset(rs)
-						begin
-							imm_s = 1'b1;
-							Write_Reg = 1'b0;
-							ALU_OP = 3'b100;
-							Mem_Write = 1'b1;
-							rd_rt_s = 1'bz;
-							alu_mem_s = 1'bz;
-						end
-					default: ALU_OP = 3'b000;
-				endcase
-			end
+		wr_data_s = 2'b00;
+		imm_s = 1'bz;
+		PC_s = 2'b00;
+		case(op_code) //R
+			6'b000000:
+				begin
+					Write_Reg = 1'b1;
+						case (func)
+							6'b100000: ALU_OP = 3'b100;
+							6'b100010: ALU_OP = 3'b101;
+							6'b100100: ALU_OP = 3'b000;
+							6'b100101: ALU_OP = 3'b001;
+							6'b100110: ALU_OP = 3'b010;
+							6'b100111: ALU_OP = 3'b011;
+							6'b101011: ALU_OP = 3'b110;
+							6'b000100: ALU_OP = 3'b111;
+							default:   ALU_OP = 3'b000;
+						endcase
+				end
+			6'b100011: // lw rt, offset(rs)
+				begin
+					w_r_s = 2'b01;
+					imm_s = 1'b1;
+					rt_imm_s = 1'b1;
+					wr_data_s = 2'b01;
+					ALU_OP = 3'bzzz;
+					Write_Reg = 1'b1;
+					Mem_Write = 1'b0;
+					PC_s = 2'b00;
+				end
+			6'b101011: // sw rt, offset(rs)
+				begin
+					w_r_s = 2'bzz;
+					imm_s = 1'b1;
+					rt_imm_s = 1'b1;
+					wr_data_s = 2'bzz;
+					ALU_OP = 3'bzzz;
+					Write_Reg = 1'b0;
+					Mem_Write = 1'b1;
+					PC_s = 2'b00;
+				end
+			6'b001000: // addi rt, rs, imm
+				begin
+					w_r_s = 2'b01;
+					imm_s = 1'b1;
+					rt_imm_s = 1'b1;
+					wr_data_s = 2'b00;
+					ALU_OP = 3'b100;
+					Write_Reg = 1'b1;
+					Mem_Write = 1'b0;
+					PC_s = 2'b00;
+				end
+			6'b001011: // sltiu rt,rs, imm
+				begin
+					w_r_s = 2'b01;
+					imm_s = 1'b0;
+					rt_imm_s = 1'b1;
+					wr_data_s = 2'b00;
+					ALU_OP = 3'b110;
+					Write_Reg = 1'b1;
+					Mem_Write = 1'b0;
+					PC_s = 2'b00;
+				end
+			6'b001100: // andi rt, rs, imm
+				begin
+					w_r_s = 2'b01;
+					imm_s = 1'b0;
+					rt_imm_s = 1'b1;
+					wr_data_s = 2'b00;
+					ALU_OP = 3'b000;
+					Write_Reg = 1'b1;
+					Mem_Write = 1'b0;
+					PC_s = 2'b00;
+				end
+			6'b001110: // xori rt, rs, imm
+				begin
+					w_r_s = 2'b01;
+					imm_s = 1'b0;
+					rt_imm_s = 1'b1;
+					wr_data_s = 2'b00;
+					ALU_OP = 3'b010;
+					Write_Reg = 1'b1;
+					Mem_Write = 1'b0;
+					PC_s = 2'b00;
+				end
+			6'b000100: // beq rs, rt, label
+				begin
+					w_r_s = 2'bzz;
+					imm_s = 1'bz;
+					rt_imm_s = 1'b0;
+					wr_data_s = 2'bzz;
+					ALU_OP = 3'b101;
+					Write_Reg = 1'b0;
+					Mem_Write = 1'b0;
+					PC_s = 2'b00; // 00/10
+				end
+			6'b000101:  //bne rs, rt, label
+				begin
+					w_r_s = 2'bzz;
+					imm_s = 1'bz;
+					rt_imm_s = 1'b0;
+					wr_data_s = 2'bzz;
+					ALU_OP = 3'b101;
+					Write_Reg = 1'b0;
+					Mem_Write = 1'b0;
+					PC_s = 2'b00; // 00/10
+				end
+			6'b000010: // j label
+				begin
+					w_r_s = 2'bzz;
+					imm_s = 1'bz;
+					rt_imm_s = 1'bz;
+					wr_data_s = 2'bzz;
+					ALU_OP = 3'bzzz;
+					Write_Reg = 1'b0;
+					Mem_Write = 1'b0;
+					PC_s = 2'b11;
+				end
+			6'b000011: // jal label
+				begin
+					w_r_s = 2'b1z;
+					imm_s = 1'bz;
+					rt_imm_s = 1'bz;
+					wr_data_s = 2'b1z;
+					ALU_OP = 3'bzzz;
+					Write_Reg = 1'b1;
+					Mem_Write = 1'b0;
+					PC_s = 2'b11;
+				end
+			default:  // jr rs
+				begin
+					w_r_s = 2'bzz;
+					imm_s = 1'bz;
+					rt_imm_s = 1'bz;
+					wr_data_s = 2'bzz;
+					ALU_OP = 3'bzzz;
+					Write_Reg = 1'b0;
+					Mem_Write = 1'b0;
+					PC_s = 2'b01;
+					// rs -> PC_next
+				end
+		endcase
 	end
 	
 	always @(negedge clk)
@@ -183,18 +281,36 @@ module RICPU(
 		FR_ZF <= ZF;
 		FR_OF <= OF;
 	end
+	
+	// PC_s
+	// 00 PC_new -> PC_next
+	// 01 rs->PC_next
+	// 10 PC_new + (imm_Data<<2) -> PC_next
+	// 11 
+	always @(*)
+	begin
+		case(PC_s)
+			2'b00: PC_next <= PC_new;
+			2'b01: PC_next <= ALU_A;
+			2'b10: PC_next <= PC_new + (imm_Data << 2);
+			2'b11: PC_next <= {PC_new[31:28], address, 2'b00};
+		endcase
+	end
 endmodule
 
 //EXPR 7 
 module IF_M(
 		input [0:0] clka,
 		input [0:0] rst,
+		input [31:0] PC_next,
+		output [31:0] PC_new,
+		output reg [31:0] PC,
 		output [31:0] Inst_code
     );
 	wire [31:0] douta;
 	wire [5:0] addra;
-	reg [31:0] PC;
-	wire [31:0] PC_new;
+	// reg [31:0] PC;
+	// wire [31:0] PC_new;
 	
 	IROM Inst_addr (
 	  .clka(clka), // input clka
@@ -297,7 +413,7 @@ module ALU(A, B, ZF, OF, F, ALU_OP);
 					end
 				else 
 					begin
-						F = 32'd1;
+						F = 32'd0;
 					end
 				OF = 0;
 			end
@@ -321,3 +437,4 @@ module ALU(A, B, ZF, OF, F, ALU_OP);
 			end
 	end
 endmodule
+

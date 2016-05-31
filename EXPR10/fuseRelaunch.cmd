@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "X:/TEOCOA/EXPR10/TESTRIJCPU_isim_beh.exe" -prj "X:/TEOCOA/EXPR10/TESTRIJCPU_beh.prj" "work.TESTRIJCPU" "work.glbl" 
